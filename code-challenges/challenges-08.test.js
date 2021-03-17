@@ -8,7 +8,9 @@ Write a function named returnTen, takes in a string and uses split and splice to
 ------------------------------------------------------------------------------------------------ */
 
 function returnTen(str){
-  console.log(str);
+  let array = str.split('');
+  array.splice(0, array.length-10);
+  return array;
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -20,7 +22,10 @@ For example, typeNum([1, 'bob' ,3]) returns [1,3].
 ------------------------------------------------------------------------------------------------ */
 
 const typeNum = (arr) => {
-  // Solution code here...
+  let newArr = arr.filter(item => {
+    return /\d/.test(item);
+  });
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -32,7 +37,10 @@ For example, containsAnd(['panda', 'ran', 'and']) returns ['panda', 'and'].
 ------------------------------------------------------------------------------------------------ */
 
 const containsAnd = (arr) => {
-  // Solution code here...
+  let newArr = arr.filter(item => {
+    return /and/.test(item);
+  });
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -44,7 +52,8 @@ For example, oddValues([1,2,3]) returns [1,3].
 ------------------------------------------------------------------------------------------------ */
 
 const oddValues = (arr) => {
-  // Solution code here...
+  let newArr = arr.filter(item => item % 2 === 1);
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -59,7 +68,10 @@ For example, filterStringsWithVowels('gregor','hound','xyz') returns ['gregor', 
 
 
 const filterStringsWithVowels = (arr) => {
-  // Solution code here...
+  let newArr = arr.filter(item => {
+    return /a|e|i|o|u/.test(item);
+  });
+  return newArr;
 };
 
 
@@ -72,7 +84,12 @@ For example, notInFirstArray([1,2,3], [1,2,3,4]) returns [4].
 ------------------------------------------------------------------------------------------------ */
 
 const notInFirstArray = (forbiddenValues, arr) => {
-  // Solution code here...
+  let newArr = arr.filter(item => {
+    // console.log(`This ${item} shouldn't be included in the newArr:`, !forbiddenValues.indexOf(item) === -1);
+    return forbiddenValues.indexOf(item) === -1;
+  });
+  console.log('newArr',newArr);
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
