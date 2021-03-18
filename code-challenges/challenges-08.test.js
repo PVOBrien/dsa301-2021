@@ -85,10 +85,8 @@ For example, notInFirstArray([1,2,3], [1,2,3,4]) returns [4].
 
 const notInFirstArray = (forbiddenValues, arr) => {
   let newArr = arr.filter(item => {
-    // console.log(`This ${item} shouldn't be included in the newArr:`, !forbiddenValues.indexOf(item) === -1);
-    return forbiddenValues.indexOf(item) === -1;
+    return forbiddenValues.indexOf(item) === -1; //include it in the new array, if it IS NOT (aka if it IS false) in the forbidden values.
   });
-  console.log('newArr',newArr);
   return newArr;
 };
 
@@ -198,7 +196,7 @@ const characters = [
 
 const getCharactersWithoutChildren = (arr) => {
   // Solution code here...
-};
+};  
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 10 - Stretch Goal
