@@ -1,25 +1,33 @@
 'use strict';
 
+const { name } = require("mustache");
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1 - Review
 
 Write a function named transformToLis that, given an object, returns an array of the key value pairs as html list items.
 
-For example: 
+For example:
 {
   name: 'bob',
   age: 32
 }
 
-Becomes: 
+Becomes:
 [
 <li>name: bob</li>,
 <li>age: 32</li>
 ]
 ------------------------------------------------------------------------------------------------ */
 
-function transformToLis(obj){
-  // Solution code here...
+function transformToLis(obj){ // https://attacomsian.com/blog/javascript-iterate-objects
+  let newArr = [];
+  let objKeys = Object.keys(obj);
+  objKeys.forEach((key) => {
+    let entry = `<li>${key}: ${obj[key]}</li>`;
+    newArr.push(entry);
+  });
+  return newArr;
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -30,7 +38,10 @@ Write a function named addValues that, given an array of numbers as input, uses 
 ------------------------------------------------------------------------------------------------ */
 
 const addValues = (arr) => {
-  // Solution code here...
+  let result = arr.reduce((acc, item) => {
+    return acc + item;
+  }, 0);
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -46,7 +57,10 @@ Write a function named addPurchases that, given an array of objects as input, us
 ------------------------------------------------------------------------------------------------ */
 
 const addPurchases = (arr) => {
-  // Solution code here...
+  let result = arr.reduce((acc, item) => {
+    return acc + item.purchasePrice;
+  }, 0);
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -58,7 +72,10 @@ Note: You may not use the array's built-in length property.
 ------------------------------------------------------------------------------------------------ */
 
 const countNumberOfElements = (arr) => {
-  // Solution code here...
+  let result = arr.reduce((acc, item) => {
+    return acc + 1;
+  }, 0);
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -118,7 +135,11 @@ let starWarsData = [{
 }];
 
 const returnNames = (arr) => {
-  // Solution code here...
+  let result = arr.reduce((acc, character) => {
+    acc.push(character.name); // can't invoke a push() on same line as return :shrug:
+    return acc;
+  }, []);
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -130,7 +151,11 @@ Note: You must use reduce for this challenge. You may not use the built-in .reve
 ------------------------------------------------------------------------------------------------ */
 
 const reversedString = (str) => {
-  // Solution code here...
+  let stringArray = str.split('');
+  let result = stringArray.reduce((acc, char) => {
+    return char.concat(acc);
+  }, '');
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
