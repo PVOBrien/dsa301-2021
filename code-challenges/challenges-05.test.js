@@ -25,17 +25,27 @@ let starWarsPeople = [
 ];
 
 const sortStarWarsCharacters = (starWarsArr) => {
-  // Solution code here...
-}
+  // console.log(starWarsArr);
+  let result = [];
+  result = starWarsArr.sort((a, b) => {
+    if (parseInt(a.height) < parseInt(b.height)) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+  return result;
+};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 
-Write a function named removeThree that takes an index and an array. The function should removes three items in the array starting with the value at the index. 
+Write a function named removeThree that takes an index and an array. The function should removes three items in the array starting with the value at the index.
 ------------------------------------------------------------------------------------------------ */
 
 const removeThree = (idx, arr) => {
-  // Solution code here...
+  arr.splice(idx, 3);
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -45,7 +55,8 @@ Write a function named joinArray that takes an array and joins all of the elemen
 ------------------------------------------------------------------------------------------------ */
 
 const joinArray = (arr) => {
-  // Solution code here...
+  let newArr = arr.join(' ');
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -63,7 +74,11 @@ For example, if the input is 'Welcome', the output will be:
 
 const howMuchPencil = (str) => {
   let result = [];
-  // Solution code here...
+  for (let i = 0; i< str.length; i++) {
+    let currentWord = str.slice(i);
+    result.push(currentWord);
+  }
+  result.push('');
   return result;
 };
 
@@ -75,10 +90,7 @@ Write a function name wordsToCharList that, given a string as input, returns a n
 For example, wordsToCharList('gregor') returns ['g','r','e','g','o','r'].
 ------------------------------------------------------------------------------------------------ */
 
-const wordsToCharList = (arr) => {
-  // Solution code here...
-};
-
+const wordsToCharList = (string) => string.split('');
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
@@ -123,7 +135,13 @@ const gruffaloCrumble = {
 
 const listFoods = (recipe) => {
   let result = [];
-  // Solution code here...
+  let ingredients = recipe.ingredients;
+  ingredients.forEach(item => {
+    let thisArr = item.split(' ');
+    thisArr = thisArr.slice(2);
+    thisArr = thisArr.join(' ');
+    result.push(thisArr);
+  });
   return result;
 };
 
@@ -248,7 +266,7 @@ describe('Testing challenge 1', () => {
   test('It should sort the star wars characters by height from tallest to shortest', () => {
     expect(sortStarWarsCharacters(starWarsPeople)[0]['name']).toStrictEqual('Luke Skywalker');
     expect(sortStarWarsCharacters(starWarsPeople)[2]['height']).toStrictEqual('96');
-  })
+  });
 });
 
 describe('Testing challenge 2', () => {
