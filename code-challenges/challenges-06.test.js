@@ -55,7 +55,14 @@ let characters = [
 ];
 
 const sortByChildren = (charArray) => {
-  // Solution code here...
+  charArray.sort((a, b) => {
+    if (a.children.length >= b.children.length) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+  return charArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -65,14 +72,14 @@ Write a function named getCourseKeys that takes in the courseInfo object and ret
 
 For example: (['name', 'duration', 'topics', 'finalExam']).
 ------------------------------------------------------------------------------------------------ */
-const courseInfo = { name: 'Code 301', duration: { dayTrack: '4 weeks', eveningTrack: '8 weeks'},
+const courseInfo = {
+  name: 'Code 301',
+  duration: { dayTrack: '4 weeks', eveningTrack: '8 weeks'},
   topics: ['SMACSS', 'APIs', 'NodeJS', 'SQL', 'jQuery', 'functional programming'],
   finalExam: true
 };
 
-const getCourseKeys = (obj) => {
-  // Solution code here...
-};
+const getCourseKeys = (obj) => Object.keys(obj);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -83,20 +90,21 @@ Write a function named checkValues that takes in an object and a value and retur
 ------------------------------------------------------------------------------------------------ */
 
 const checkValues = (obj, value) => {
-  // Solution code here...
+  // let keys = Object.values(obj);
+  return Object.values(obj).includes(value);
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
 
-You are given an object with names and their coresponding phone numbers that looks like this: 
+You are given an object with names and their coresponding phone numbers that looks like this:
 {
   'Grace Hopper': '222-303-5938',
   'Ada Lovelace': '222-349-9842',
   'Alan Turing': '222-853-5933'
 }
 
-HR has asked you to change the data to make it easier to print so that it looks like this: 
+HR has asked you to change the data to make it easier to print so that it looks like this:
 [
   'Grace Hopper: 222-303-5938',
   'Ada Lovelace: 222-349-9842',
@@ -106,7 +114,13 @@ HR has asked you to change the data to make it easier to print so that it looks 
 ------------------------------------------------------------------------------------------------ */
 
 const updateNumbers = (obj) => {
-  // Solution code here...
+  let resultArr = [];
+  let keys = Object.keys(obj);
+  let values = Object.values(obj);
+  for (let i = 0; i < keys.length; i++) {
+    resultArr.push(`${keys[i]}: ${values[i]}`);
+  }
+  return resultArr;
 };
 
 
@@ -119,7 +133,9 @@ Write a function named getHouses that returns a new array containing the names o
 
 const getHouses = (arr) => {
   let houses = [];
-  // Solution code here...
+  houses = arr.map(soFi => {
+    return soFi.house;
+  });
   return houses;
 };
 
@@ -136,8 +152,19 @@ hasChildrenValues(characters, 'Sansa') will return false
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
-  // Solution code here...
-
+  // console.log({arr});
+  // console.log({character});
+  let hasChildren = false;
+  arr.forEach(arrPerson => {
+    if (arrPerson.name === character) {
+      console.log('here in name');
+      if (arrPerson.children.length > 0) {
+        console.log('here w children');
+        hasChildren = true;
+      }
+    }
+  });
+  return hasChildren;
 };
 
 /* ------------------------------------------------------------------------------------------------
