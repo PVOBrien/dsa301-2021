@@ -48,7 +48,7 @@ CHALLENGE 3
 
 Write a function named totalSum that takes in a matrix of numbers and returns the totalSum of all the numbers.
 
-For example: 
+For example:
 [
   [1, 3, 4, 5],
   [4, 5, 1],
@@ -58,7 +58,15 @@ For example:
 return: 35
 ------------------------------------------------------------------------------------------------ */
 const totalSum = (matrix) => {
-  // Solution code here...
+  let firstReduce = [];
+  matrix.forEach(element => {
+    let thisTotal = element.reduce((total, item) => {
+      return total + item;
+    }, 0);
+    firstReduce.push(thisTotal);
+  });
+  return firstReduce.reduce((total, item) => total + item, 0);
+
 };
 
 
@@ -241,13 +249,13 @@ describe('Testing challenge 1', () => {
 
 describe('Testing challenge 2', () => {
   test('It should return the max value', () => {
-    expect(findMax([[13,24,24,2], [2,5,6], [2,3]])).toStrictEqual(24);
+    expect(findMax([[13, 24, 24, 2], [2, 5, 6], [2, 3]])).toStrictEqual(24);
   });
 });
 
 describe('Testing challenge 3', () => {
   test('It should return the total sum', () => {
-    expect(totalSum([[13,24,24,2], [2,5,6], [2,3]])).toStrictEqual(81);
+    expect(totalSum([[13, 24, 24, 2], [2, 5, 6], [2, 3]])).toStrictEqual(81);
     expect(totalSum([])).toStrictEqual(0);
   });
 });
