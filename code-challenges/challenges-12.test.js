@@ -112,15 +112,12 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 ------------------------------------------------------------------------------------------------ */
 
 const salesData = (hours, data) => {
-  console.log('hours:', hours, 'data', data);
   let objArr = [];
-  console.log(objArr);
   hours.forEach((item, idx) => {
     let newObj = { time: item };
     newObj.sales = `${data[idx]} cookies`;
     objArr.push(newObj);
   });
-  console.log('line 122', objArr);
   return objArr;
 };
 
@@ -146,7 +143,14 @@ const errands = [
 ];
 
 const howManyTreats = (arr) => {
-  // Solution code here...
+  let treatNumber = 0;
+  arr.forEach(store => {
+    store.items.forEach(thing => {
+      thing.name === 'Treats' ? treatNumber += thing.quantity : null;
+    });
+  });
+  console.log(treatNumber);
+  return treatNumber;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -300,7 +304,7 @@ describe('Testing challenge 5', () => {
   });
 });
 
-xdescribe('Testing challenge 6', () => {
+describe('Testing challenge 6', () => {
   test('It should return the number 24', () => {
     expect(howManyTreats(errands)).toStrictEqual(24);
   });
