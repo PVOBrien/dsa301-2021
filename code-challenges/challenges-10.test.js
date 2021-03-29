@@ -167,7 +167,7 @@ let findMaleAndFemale = (data) => {
       endString += character.name + ' and ';
     }
   });
-  return endString.slice(0,endString.length-5);
+  return endString.slice(0, endString.length - 5);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -177,12 +177,11 @@ Write a function named findShortest that, given the Star Wars data from Challeng
 ------------------------------------------------------------------------------------------------ */
 
 let findShortest = (data) => {
-  console.log('the data', data);
-  let shortest = data[0].height;
+  let shortest = data[0];
   data.forEach(character => {
-    character.height < shortest.height ? shortest = character.name : shortest;
+    parseInt(character.height) < parseInt(shortest.height) ? shortest = character : shortest;
   });
-  return shortest;
+  return shortest.name;
 };
 
 /* ------------------------------------------------------------------------------------------------
