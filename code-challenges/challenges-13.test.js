@@ -3,13 +3,21 @@
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1 - Review
 
-Write a function named longestString that takes in an array of strings and returns the index position of the longest string. 
+Write a function named longestString that takes in an array of strings and returns the index position of the longest string.
 ------------------------------------------------------------------------------------------------ */
 
 const longestString = (arr) => {
-// Solution code here...
+  let longestString = '';
+  let longestIndex = -1;
+  arr.forEach((element, idx) => {
+    if (element.length > longestString.length) {
+      longestString = element;
+      longestIndex = idx;
+    }
+  });
+  return longestIndex;
 };
-  
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 
@@ -19,7 +27,10 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['t', 
 ------------------------------------------------------------------------------------------------ */
 
 const firstLetters = (arr) => {
-  // Solution code here...
+  let firstLetters = arr.map(item => {
+    return item.slice(0, 1);
+  });
+  return firstLetters;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -31,6 +42,15 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['this
 ------------------------------------------------------------------------------------------------ */
 
 const findHappiness = (arr) => {
+  let regex = /:\)|^:\)/gm;
+  let backUpArr = [];
+  let newArr = arr.filter(item => {
+    // console.log(regex.test(item), item);
+    regex.test(item) ? backUpArr.push(item) : null;
+    return regex.test(item);
+  });
+  // console.log(newArr);
+  return backUpArr;
   // Solution code here...
 };
 
@@ -42,12 +62,16 @@ Write a function named standardizePhoneNumbers that takes in an array of phone n
 For example, (123) 456-7890 returns 1234567890
 ------------------------------------------------------------------------------------------------ */
 
-const standardizePhoneNumbers = (arr) => {
-  // Solution code here...
+const standardizePhoneNumbers = (arr) => { // https://kodlogs.com/45593/how-to-remove-all-non-alphanumeric-characters-javascript
+  let regex = /[\D]?[\s]?/g;
+  let newArr = arr.map(item => {
+    return item.replace(regex, '');
+  });
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
-CHALLENGE 5 
+CHALLENGE 5
 
 Write a function named onlyOddChars that takes in a string and returns only the odd-index characters from that string.
 
@@ -55,17 +79,31 @@ For example, 'abcdefg' returns 'bdf'
 ------------------------------------------------------------------------------------------------ */
 
 const onlyOddChars = (str) => {
-  // Solution code here...
+  let strArr = str.split('');
+  let newStrArr = strArr.filter((item, idx) => {
+    if (idx % 2 === 1) {
+      return item;
+    }
+  });
+  return newStrArr.join('');
 };
 
 /* ------------------------------------------------------------------------------------------------
-CHALLENGE 6 
+CHALLENGE 6
 
 Write a function named allHappy that takes in an array of strings and returns a Boolean indicating whether all those strings contain ":)".
 ------------------------------------------------------------------------------------------------ */
 
 const allHappy = (arr) => {
-  // Solution code here...
+  let regex = /:\)|^:\)/gm;
+  let backUpArr = [];
+  let newArr = arr.filter(item => {
+    // console.log(regex.test(item), item);
+    regex.test(item) ? backUpArr.push(item) : null;
+    return regex.test(item);
+  });
+  // console.log(backUpArr);
+  return arr.length === backUpArr.length;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -156,9 +194,9 @@ Run your tests from the console: jest challenges-13.test.js
 
 describe('Testing challenge 1', () => {
   test('It should return an index position of the longest string', () => {
-    const strArray1 = ['Ginger', 'Goose', 'Tangerine', 'Rosie', 'Mario', 'Malaki']
+    const strArray1 = ['Ginger', 'Goose', 'Tangerine', 'Rosie', 'Mario', 'Malaki'];
     const strArray2 = [];
-    const strArray3= ['Ginger']
+    const strArray3 = ['Ginger'];
 
     expect(longestString(strArray1)).toStrictEqual(2);
     expect(longestString(strArray2)).toStrictEqual(-1);
